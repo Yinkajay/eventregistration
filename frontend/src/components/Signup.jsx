@@ -78,49 +78,19 @@ const Signup = () => {
             };
             valid = false;
         }
+
         setError(tempErrorState)
         return valid
     }
 
     const signupHandler = async (e) => {
         e.preventDefault()
-        setError({
-            firstName: false,
-            lastName: false,
-            email: false,
-            password: {
-                value: false,
-                message: ''
-            },
-            serverError: {
-                value: false,
-                message: ''
-            }
-        })
 
-        if (userInfo.password.length < 3 || userInfo.confirmPassword < 3) {
-            setError((prev) => ({
-                ...prev,
-                password: {
-                    value: true,
-                    message: 'Password must be greater than 6 characters'
-                }
-            }))
-        } else if (userInfo.password !== userInfo.confirmPassword) {
-            setError(prev => ({
-                ...prev,
-                password: {
-                    value: true,
-                    message: 'Passwords do not match'
-                }
-            }))
-        }
-
+        if (!validateErrors()) return
 
         if (error.firstName || error.lastName || error.email || error.password.value) {
             return
         }
-
 
         try {
             const response = await fetch('http://localhost:5000/api/signup', {
