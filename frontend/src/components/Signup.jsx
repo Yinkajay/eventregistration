@@ -65,10 +65,10 @@ const Signup = () => {
             tempErrorState.email = true
             valid = false
         }
-        if (userInfo.password.length < 6) {
+        if (userInfo.password.length < 5) {
             tempErrorState.password = {
                 value: true,
-                message: 'Password must be greater than 6 characters'
+                message: 'Password must be greater than 5 characters'
             };
             valid = false;
         } else if (userInfo.password !== userInfo.confirmPassword) {
