@@ -14,7 +14,7 @@ const sendVerificationEmail = (email, firstName, verificationLink) => {
         from: process.env.EMAIL_USER,
         to: email,
         subject: 'Event Master Email Verification',
-        html: `<p>Welcome, ${firstName}! Please verify your email by clicking <a href="${verificationLink}">here</a>.</p>`
+        html: `<p>Welcome, ${firstName}! Please verify your email by clicking <a href="${verificationLink}">here</a>. This link expires in 1 hour!</p>`
     };
 
     return transporter.sendMail(mailOptions);
