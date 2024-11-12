@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const Signup = () => {
+    const navigate = useNavigate()
     const [userInfo, setUserInfo] = useState({
         firstName: '',
         lastName: '',
@@ -113,6 +115,9 @@ const Signup = () => {
             }
             const data = await response.json()
             console.log(data)
+
+            navigate('/check-email')
+
 
         } catch (error) {
             setError(prev => ({

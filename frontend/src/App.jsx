@@ -2,37 +2,22 @@ import { useState } from 'react'
 import './App.css'
 import Signup from './components/Signup'
 import Signin from './components/Signin'
+import { createBrowserRouter, Route, Router, Routes } from 'react-router-dom'
+import { Home } from './components/Home'
+import Auth from './components/Auth'
+import Dashboard from './components/Dashboard'
+import CheckEmail from './components/CheckEmail'
 
 function App() {
-  const [mode, setMode] = useState('sign up')
-  // const mm = isSigningUp ? 'sign up' : 'sign in'
 
-  const switchMode = (wantedMode) => {
-    if (mode === 'sign up' && wantedMode === 'sign up') {
-      return
-      // setMode('sign in')
-    } else if (mode === 'sign up' && wantedMode !== 'sign up') {
-      setMode('sign in')
-    } else if (mode === 'sign in' && wantedMode === 'sign in') {
-      return
-    } else {
-      setMode('sign up')
-    }
-  }
 
   return (
-    <main>
-      <h1 className='text-2xl w-max mx-auto mb-4'>Auth Form</h1>
-      <section className='bg-blue-200 md:w-1/2 lg:w-1/3 mx-auto rounded-lg'>
-        <div className="flex justify-evenly rounded-t-lg bg-blue-50">
-          <div className={`rounded-t-lg cursor-pointer py-4 text-center flex-1 ${mode === 'sign up' ? 'bg-slate-950 text-white' : ''}`} onClick={() => switchMode('sign up')}>Sign Up</div>
-          <div className={`rounded-t-lg cursor-pointer py-4 text-center flex-1 ${mode === 'sign in' ? 'bg-slate-950 text-white' : ''}`} onClick={() => switchMode('sign in')}>Log In</div>
-        </div>
-        <form className='text-center p-4'>
-          {mode == 'sign up' ? <Signup /> : <Signin />}
-        </form>
-      </section>
-    </main>
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/auth' element={<Auth />} />
+      <Route path='/check-email' element={<CheckEmail />} />
+      <Route path='/dashboard' element={<Dashboard />} />
+    </Routes>
   )
 }
 
