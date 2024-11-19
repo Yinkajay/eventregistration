@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const connection = require('./db')
 const authRoutes = require('./routes/authRoutes.js')
+const eventRoutes = require('./routes/eventRoutes.js')
 
 
 const app =  express()
@@ -13,6 +14,7 @@ const port = 5000 || process.env.PORT
 
 
 app.use('/api', authRoutes)
+app.use('/api', eventRoutes)
 
 
 app.listen(port, ()=>{

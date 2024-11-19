@@ -57,7 +57,7 @@ router.post('/signup', (req, res) => {
             return res.status(500).send('Error occurred while creating user');
         }
 
-        const verificationToken = jwt.sign({ userId: id, firstName: first_name, lastName: last_name }, JWT_SECRET, { expiresIn: '1h' })
+        const verificationToken = jwt.sign({ userId: id, firstName: first_name, lastName: last_name }, JWT_SECRET, { expiresIn: '1h ' })
         const verificationLink = `http://localhost:5173/verify-email?token=${verificationToken}`;
 
 
