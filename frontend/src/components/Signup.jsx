@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import LoadingSpinner from "../UI/LoadingSpinner"
 
 const Signup = () => {
     const navigate = useNavigate()
@@ -10,6 +11,7 @@ const Signup = () => {
         password: '',
         confirmPassword: ''
     })
+    const [loading, setLoading] = useState(false)
 
     const [error, setError] = useState({
         firstName: false,
@@ -94,6 +96,7 @@ const Signup = () => {
             return
         }
 
+        setLoading(true)
         try {
             const response = await fetch('http://localhost:5000/api/signup', {
                 method: 'POST',
@@ -115,7 +118,7 @@ const Signup = () => {
             }
             const data = await response.json()
             console.log(data)
-
+            setLoading(false)
             navigate('/check-email')
 
 
@@ -129,7 +132,7 @@ const Signup = () => {
             }))
             console.error('Error during signup request:', error.message);
         }
-
+        setLoading(false)
     }
 
     return (
@@ -190,7 +193,7 @@ const Signup = () => {
                 {error.password.value && <p className="text-xs mt-2 text-red-500">{error.password.message}</p>}
             </label>
             <br />
-            <button className="bg-slate-950 border-2 border-black text-white py-2 px-8 mt-4 hover:bg-white hover:text-slate-950 hover:border-2 hover:border-black" type="submit" onClick={signupHandler}>Sign Up</button>
+            <button className="bg-slate-950 border-2 border-black text-white py-2 px-8 mt-4 hover:bg-white hover:text-slate-950 hover:border-2 hover:border-black" type="submit" onClick={signupHandler}>{loading ? < LoadingSpinner />:'Sign Up'}</button>
             {error.serverError.value && <p className="text-xs mt-2 text-red-500">{error.serverError.message}</p>}
         </>
     )

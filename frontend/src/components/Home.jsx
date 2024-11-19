@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import Navbar from "../UI/Navbar"
 
 export const Home = () => {
     const navigate = useNavigate()
@@ -8,10 +9,11 @@ export const Home = () => {
     }
     return (
         <>
-            <nav className="h-max bg-black py-4 flex justify-center">
+            {/* <nav className="h-max bg-black py-4 flex justify-center">
                 <h1>Event Master</h1>
                 <button className="bg-white p-1 text-black" onClick={goToAuthPage}>Sign In</button>
-            </nav>
+            </nav> */}
+            <Navbar />
             <h1>Register for the hottest events today!</h1>
 
 

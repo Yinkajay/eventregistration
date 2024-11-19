@@ -8,6 +8,7 @@ import Auth from './components/Auth'
 import Dashboard from './components/Dashboard'
 import CheckEmail from './components/CheckEmail'
 import VerifyEmail from './components/VerifyEmail'
+import Events from './components/Events'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Route path='/check-email' element={<CheckEmail />} />
       <Route path='/verify-email' element={<VerifyEmail />} />
       <Route path='/dashboard' element={<Dashboard />} />
+      <Route path='/events' element={<Events />} />
     </Routes>
   )
 }

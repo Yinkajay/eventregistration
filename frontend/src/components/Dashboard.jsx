@@ -1,3 +1,5 @@
+import LoadingSpinner from "../UI/LoadingSpinner"
+
 const Dashboard = () => {
     return (
         <>
