@@ -17,10 +17,11 @@ router.get('/user', (req, res) => {
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET); // Validate and decode the token
-        const userId = decoded.userId;
-
+        console.log(decoded)
+        const userId = decoded.id;
+        // console.log(userId)
         // Fetch user info from the database
-        connection.query('SELECT id, first_name, last_name, email FROM users WHERE id = ?', [userId], (err, results) => {
+        connection.query('SELECT id, first_name, last_name, is_verified, email FROM users WHERE id = ?', [userId], (err, results) => {
             if (err) {
                 return res.status(500).json({ message: 'Error fetching user data' });
             }
@@ -32,6 +33,6 @@ router.get('/user', (req, res) => {
     } catch (error) {
         res.status(401).json({ message: 'Invalid or expired token' });
     }
-
-    
 })
+
+module.exports = router

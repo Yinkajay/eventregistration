@@ -103,7 +103,7 @@ router.post('/login', async (req, res) => {
                 }
 
                 // Generate JWT
-                const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+                const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '4h' });
                 console.log('Successfully found and logged in.')
                 // Send token in response
                 res.status(200).json({ token });

@@ -3,7 +3,7 @@ const cors = require('cors')
 const connection = require('./db')
 const authRoutes = require('./routes/authRoutes.js')
 const eventRoutes = require('./routes/eventRoutes.js')
-
+const userRoutes = require ('./routes/userRoutes.js')
 
 const app =  express()
 app.use(express.json())
@@ -15,6 +15,7 @@ const port = 5000 || process.env.PORT
 
 app.use('/api', authRoutes)
 app.use('/api', eventRoutes)
+app.use('/api', userRoutes)
 
 
 app.listen(port, ()=>{
