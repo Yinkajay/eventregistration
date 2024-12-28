@@ -1,9 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import { Home } from "../components/Home"
+import { useContext } from "react"
+import AuthContext from "../context/AuthContext"
 
 const Navbar = () => {
     const navigate = useNavigate()
-
+    const { isLoggedIn, userInfo } = useContext(AuthContext)
+    
     const goToAuthPage = () => {
         navigate('/auth')
     }
@@ -16,10 +19,18 @@ const Navbar = () => {
             <div className="text-white font-bold">
                 <NavLink className='mx-3' to='/'>Home</NavLink>
                 <NavLink className='mx-3' to='/events'>Events</NavLink>
-                <NavLink className='mx-3' to='/dashboard'>Dashboard</NavLink>
+                {isLoggedIn
+                    ? <NavLink className='mx-3' to='/dashboard'>Dashboard</NavLink>
+                    : ''
+                }
+
             </div>
             <div className="">
-                <button className="bg-white text-sm p-1 text-black" onClick={goToAuthPage}>Sign In</button>
+                {isLoggedIn
+                    ? <p className="text-white">Hello, {userInfo?.first_name}</p>
+                    : <button className="bg-white text-sm p-1 text-black" onClick={goToAuthPage}>Sign In</button>
+                }
+
             </div>
         </nav>
     )

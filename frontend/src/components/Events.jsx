@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Navbar from "../UI/Navbar"
+import { Link } from "react-router-dom"
+import AuthContext from "../context/AuthContext"
 
 const Events = () => {
     const [events, setEvents] = useState([])
@@ -25,16 +27,16 @@ const Events = () => {
 
     return (
         <>
-        <Navbar />
+            <Navbar />
             <h1>Check out the list of events below</h1>
             {/* <section className="grid grid-cols-3 gap-1"> */}
             <section className="flex flex-wrap gap-2">
                 {events?.map((event) => (
-                    <div className="bg-lime-200 hover:scale-105 hover:cursor-pointer p-2 my-2 w-[31%]">
+                    <Link key={event.id} to={`${event.id}`} className="bg-lime-200 hover:bg-lime-300 hover:cursor-pointer p-2 my-2 w-[31%]">
                         <h1 className="font-medium">{event.title}</h1>
                         <p className="text-sm">{event.subtitle}</p>
                         <p>Location - {event.city}</p>
-                    </div>
+                    </Link>
                 ))}
             </section>
         </>

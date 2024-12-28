@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Signin from "./Signin"
 import Signup from "./Signup"
+import Navbar from "../UI/Navbar"
 
 const Auth = () => {
     const [mode, setMode] = useState('sign up')
@@ -20,8 +21,9 @@ const Auth = () => {
 
     return (
         <>
-            <h1 className='text-2xl w-max mx-auto mb-4'>Event Master</h1>
-            <section className='bg-blue-200 md:w-1/2 lg:w-1/3 mx-auto rounded-lg'>
+        <Navbar/>
+            {/* <h1 className='text-2xl w-max mx-auto mb-4'>Event Master</h1> */}
+            <section className='bg-blue-200 md:w-1/2 lg:w-1/3 my-2 mx-auto rounded-lg'>
                 <div className="flex justify-evenly rounded-t-lg bg-blue-50">
                     <div className={`rounded-t-lg cursor-pointer py-4 text-center flex-1 ${mode === 'sign up' ? 'bg-slate-950 text-white' : ''}`} onClick={() => switchMode('sign up')}>Sign Up</div>
                     <div className={`rounded-t-lg cursor-pointer py-4 text-center flex-1 ${mode === 'sign in' ? 'bg-slate-950 text-white' : ''}`} onClick={() => switchMode('sign in')}>Log In</div>

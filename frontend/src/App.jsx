@@ -9,9 +9,10 @@ import Dashboard from './components/Dashboard'
 import CheckEmail from './components/CheckEmail'
 import VerifyEmail from './components/VerifyEmail'
 import Events from './components/Events'
+import ProtectedRoute from './components/ProtectedRoute'
+import EventDetail from './components/EventDetail'
 
 function App() {
-
 
   return (
     <Routes>
@@ -19,8 +20,15 @@ function App() {
       <Route path='/auth' element={<Auth />} />
       <Route path='/check-email' element={<CheckEmail />} />
       <Route path='/verify-email' element={<VerifyEmail />} />
-      <Route path='/dashboard' element={<Dashboard />} />
+      <Route
+        path='/dashboard' element={
+          <ProtectedRoute>
+            <Dashboard /> 
+          </ProtectedRoute>
+        }
+      />
       <Route path='/events' element={<Events />} />
+      <Route path="/events/:id" element={<EventDetail />} />
     </Routes>
   )
 }
